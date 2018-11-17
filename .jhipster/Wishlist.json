@@ -4,7 +4,7 @@
         {
             "relationshipName": "user",
             "otherEntityName": "user",
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "relationshipFieldNameAsDatabaseColumn": "UserId",
             "otherEntityField": "Login",
             "relationshipValidateRules": [
@@ -14,7 +14,7 @@
         {
             "relationshipName": "book",
             "otherEntityName": "book",
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "relationshipFieldNameAsDatabaseColumn": "BookId",
             "otherEntityField": "UserId",
             "relationshipValidateRules": [

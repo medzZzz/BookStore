@@ -8,6 +8,16 @@
         <dd>
             <span>{{wishList.dateOfCreate | date:'medium'}}</span>
         </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{wishList.user?.Login}}
+        </dd>
+        <dt><span>Book</span></dt>
+        <dd>
+            <div *ngIf="wishList.book">
+                <a [routerLink]="['/book', wishList.book?.id]">{{wishList.book?.UserId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

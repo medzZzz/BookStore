@@ -91,12 +91,12 @@ public class WishListResourceIntTest {
         User user = UserResourceIntTest.createEntity(em);
         em.persist(user);
         em.flush();
-        wishList.getUsers().add(user);
+        wishList.setUser(user);
         // Add required entity
         Book book = BookResourceIntTest.createEntity(em);
         em.persist(book);
         em.flush();
-        wishList.getBooks().add(book);
+        wishList.setBook(book);
         return wishList;
     }
 

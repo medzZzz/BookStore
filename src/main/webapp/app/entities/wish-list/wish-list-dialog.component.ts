@@ -4,11 +4,13 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { WishList } from './wish-list.model';
 import { WishListPopupService } from './wish-list-popup.service';
 import { WishListService } from './wish-list.service';
+import { User, UserService } from '../../shared';
+import { Book, BookService } from '../book';
 
 @Component({
     selector: 'jhi-wish-list-dialog',
@@ -19,15 +21,26 @@ export class WishListDialogComponent implements OnInit {
     wishList: WishList;
     isSaving: boolean;
 
+    users: User[];
+
+    books: Book[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private wishListService: WishListService,
+        private userService: UserService,
+        private bookService: BookService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.userService.query()
+            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.bookService.query()
+            .subscribe((res: HttpResponse<Book[]>) => { this.books = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +71,18 @@ export class WishListDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackUserById(index: number, item: User) {
+        return item.id;
+    }
+
+    trackBookById(index: number, item: Book) {
+        return item.id;
     }
 }
 

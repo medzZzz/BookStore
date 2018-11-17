@@ -9,6 +9,8 @@ import { BookStoreTestModule } from '../../../test.module';
 import { WishListDialogComponent } from '../../../../../../main/webapp/app/entities/wish-list/wish-list-dialog.component';
 import { WishListService } from '../../../../../../main/webapp/app/entities/wish-list/wish-list.service';
 import { WishList } from '../../../../../../main/webapp/app/entities/wish-list/wish-list.model';
+import { UserService } from '../../../../../../main/webapp/app/shared';
+import { BookService } from '../../../../../../main/webapp/app/entities/book';
 
 describe('Component Tests', () => {
 
@@ -24,6 +26,8 @@ describe('Component Tests', () => {
                 imports: [BookStoreTestModule],
                 declarations: [WishListDialogComponent],
                 providers: [
+                    UserService,
+                    BookService,
                     WishListService
                 ]
             })

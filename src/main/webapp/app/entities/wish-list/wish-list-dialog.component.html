@@ -30,11 +30,25 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="wishList.user"  required>
+                <option *ngIf="!editForm.value.user" [ngValue]="null" selected></option>
+                <option [ngValue]="userOption.id === wishList.user?.id ? wishList.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.Login}}</option>
+            </select>
+        </div>
         <div [hidden]="!(editForm.controls.user?.dirty && editForm.controls.user?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.user?.errors?.required">
                 This field is required.
             </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_book">Book</label>
+            <select class="form-control" id="field_book" name="book" [(ngModel)]="wishList.book"  required>
+                <option *ngIf="!editForm.value.book" [ngValue]="null" selected></option>
+                <option [ngValue]="bookOption.id === wishList.book?.id ? wishList.book : bookOption" *ngFor="let bookOption of books; trackBy: trackBookById">{{bookOption.UserId}}</option>
+            </select>
         </div>
         <div [hidden]="!(editForm.controls.book?.dirty && editForm.controls.book?.invalid)">
             <small class="form-text text-danger"

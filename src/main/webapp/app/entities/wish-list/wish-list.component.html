@@ -18,6 +18,8 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dateOfCreate"><span>Date Of Create</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="user.Login"><span>User</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="book.UserId"><span>Book</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -25,6 +27,14 @@
             <tr *ngFor="let wishList of wishLists ;trackBy: trackId">
                 <td><a [routerLink]="['../wish-list', wishList.id ]">{{wishList.id}}</a></td>
                 <td>{{wishList.dateOfCreate | date:'medium'}}</td>
+                <td>
+                    {{wishList.user?.Login}}
+                </td>
+                <td>
+                    <div *ngIf="wishList.book">
+                        <a [routerLink]="['../book', wishList.book?.id ]" >{{wishList.book?.UserId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

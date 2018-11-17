@@ -1,6 +1,5 @@
 package com.github.medzzzz.bookstore.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,8 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -31,15 +28,13 @@ public class WishList implements Serializable {
     @Column(name = "DateofCreate", nullable = false)
     private ZonedDateTime dateOfCreate;
 
-    @OneToMany(mappedBy = "wishList")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<User> users = new HashSet<>();
+    @ManyToOne(optional = false)
+    @NotNull
+    private User user;
 
-    @OneToMany(mappedBy = "wishList")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Book> books = new HashSet<>();
+    @ManyToOne(optional = false)
+    @NotNull
+    private Book book;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -63,54 +58,30 @@ public class WishList implements Serializable {
         this.dateOfCreate = dateOfCreate;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public WishList users(Set<User> users) {
-        this.users = users;
+    public WishList user(User user) {
+        this.user = user;
         return this;
     }
 
-    public WishList addUser(User user) {
-        this.users.add(user);
-        user.setWishList(this);
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public WishList book(Book book) {
+        this.book = book;
         return this;
     }
 
-    public WishList removeUser(User user) {
-        this.users.remove(user);
-        user.setWishList(null);
-        return this;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public WishList books(Set<Book> books) {
-        this.books = books;
-        return this;
-    }
-
-    public WishList addBook(Book book) {
-        this.books.add(book);
-        book.setWishList(this);
-        return this;
-    }
-
-    public WishList removeBook(Book book) {
-        this.books.remove(book);
-        book.setWishList(null);
-        return this;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setBook(Book book) {
+        this.book = book;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
