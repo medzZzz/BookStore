@@ -25,7 +25,7 @@ public class WishList implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "DateofCreate", nullable = false)
+    @Column(name = "DateOfCreate", nullable = false)
     private ZonedDateTime dateOfCreate;
 
     @ManyToOne(optional = false)

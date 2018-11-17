@@ -25,7 +25,7 @@
     "fields": [
         {
             "fieldName": "dateOfCreate",
-            "fieldNameAsDatabaseColumn": "DateofCreate",
+            "fieldNameAsDatabaseColumn": "DateOfCreate",
             "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required"
