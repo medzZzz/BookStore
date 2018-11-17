@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipFieldNameAsDatabaseColumn": "UserId",
+            "otherEntityField": "Login",
+            "relationshipValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "relationshipName": "book",
+            "otherEntityName": "book",
+            "relationshipType": "many-to-one",
+            "relationshipFieldNameAsDatabaseColumn": "BookId",
+            "otherEntityField": "UserId",
+            "relationshipValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateOfCreate",
+            "fieldNameAsDatabaseColumn": "DateOfCreate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20181117210000",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "t_WishList",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
