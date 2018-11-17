@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [  
+        
+        {
+            "relationshipName": "author",
+            "otherEntityName": "author",
+            "relationshipType": "many-to-one",
+            "relationshipFieldNameAsDatabaseColumn": "AuthorId",
+            "otherEntityField": "lastName",
+            "relationshipValidateRules": [
+                "required"
+            ]
+        }   
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldNameAsDatabaseColumn": "Title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "128"
+        },
+        {
+            "fieldName": "description",
+            "fieldNameAsDatabaseColumn": "Description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "512"
+        },
+        {
+            "fieldName": "isbn",
+            "fieldNameAsDatabaseColumn": "Isbn",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": "64"
+        }
+    ],
+    "changelogDate": "20181117210000",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "t_Books",
+    "pagination": "pagination"
+}
